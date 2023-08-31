@@ -48,13 +48,14 @@ const dataDiv = (loadData) => {
 
          <div>
          <h2 class="card-title text-xl">${data.title}</h2>
-         <p class="text-base font-normal mt-1 text-gray-500 ">${data.authors[0].profile_name}</p>          
+
+        <div class="flex">
+        <p class="text-base font-normal mt-1 text-gray-500 ">${data.authors[0].profile_name}</p> 
+        </div>
+
          <p class="text-base font-normal mt-1 text-gray-500">${data.others.views}</p> 
          </div> 
-
-
-         </div>        
-          
+         </div>         
           `;
 
         phDataContainer.appendChild(div);
