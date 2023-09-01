@@ -33,10 +33,8 @@ const sorted = () => {
     sortedData.forEach(card => {
         phDataContainer.appendChild(card)
     })
-    
+
 }
-
-
 
 
 const phTubeData = async (id) => {
@@ -62,12 +60,35 @@ const dataDiv = (loadData) => {
     }
 
 
+
+
+
+
+
     loadData.forEach(data => {
         // console.log(data)
 
         const div = document.createElement('div');
+
+        const convertSecondToHoursMin = (second) => {
+            const hours = Math.floor(second / 3600);
+            const remainSecond = Math.floor(second % 3600);
+            const minute = Math.floor(remainSecond / 60);
+
+            return { hours, minute };
+        }
+        const totalSeconds = data.others.posted_date;
+        const { hours, minute } = convertSecondToHoursMin(totalSeconds)
+
+
+
         div.classList = `card bg-base-100 shadow-xl`;
         div.innerHTML = ` <figure><img class="w-[300px] h-[200px] rounded-lg" src="${data.thumbnail}" alt="Shoes" /></figure>
+
+    <div class ="bg-black text-white text-sm  rounded-md p-1 absolute md:absolute md:bottom-2 lg:right-6 right-14  lg:mb-44 md:mb-40 mt-40  ">
+        <p>${hours == 0 ? '' : hours} ${hours == 0 ? '' : 'hrs'} ${minute == 0 ? '' : minute} ${minute == 0 ? '' : 'min'} ${minute == 0 ? '' : 'ago'}</p>
+    </div>
+
         <div class="card-body">
          <div class="flex gap-2">
          <div>
@@ -81,12 +102,8 @@ const dataDiv = (loadData) => {
        <span> <p class="text-base font-normal mt-1 text-gray-500 ">${data.authors[0].profile_name}</p></span>
         
         <div><p>${data.authors[0].verified === true ? '<img class= mt-2 src="image/icon.svg" alt="">' : ' '}</p></div>
-
         
         </div>
-
-
-
          <p id="views-items" class="text-base font-normal mt-1 text-gray-500">${data.others.views} views</p> 
          </div> 
          </div>         
