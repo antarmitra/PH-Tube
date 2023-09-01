@@ -6,16 +6,34 @@ const phData = async () => {
     displayData(loading);
 }
 
-
-
 const displayData = (loading) => {
     const tubeContainer = document.getElementById('tube-container');
     loading.forEach(tube => {
-        console.log(tube)
+        // console.log(tube)
         const div = document.createElement('div');
         div.innerHTML = `<a onclick ="phTubeData('${tube.category_id}')" class="tab bg-[#FF1F3D] text-base font-medium text-white rounded-lg">${tube.category}</a>`;
         tubeContainer.appendChild(div);
     })
+}
+
+
+const sorted = () => {
+    const phDataContainer = document.getElementById('phData-container');
+    const phData = Array.from(phDataContainer.children);
+
+    const sortedData = phData.sort((cardA, cardB) => {
+        const viewsA = parseInt(cardA.querySelector("#views-items").innerText.split("K", 1));
+        const viewsB = parseInt(cardB.querySelector("#views-items").innerText.split("K", 1));
+        return viewsB - viewsA;
+        // console.log(viewsA, viewsB)
+    });
+
+    phDataContainer.innerHTML = "";
+
+    sortedData.forEach(card => {
+        phDataContainer.appendChild(card)
+    })
+    
 }
 
 
@@ -36,16 +54,16 @@ const dataDiv = (loadData) => {
 
 
 
-  const drawContainer = document.getElementById('draw-container');
-  if(loadData.length === 0){
-    drawContainer.classList.remove('hidden')
-  }else{
-    drawContainer.classList.add('hidden') 
-  }
-  
+    const drawContainer = document.getElementById('draw-container');
+    if (loadData.length === 0) {
+        drawContainer.classList.remove('hidden')
+    } else {
+        drawContainer.classList.add('hidden')
+    }
+
 
     loadData.forEach(data => {
-        console.log(data)
+        // console.log(data)
 
         const div = document.createElement('div');
         div.classList = `card bg-base-100 shadow-xl`;
@@ -59,8 +77,6 @@ const dataDiv = (loadData) => {
          <div>
          <h2 class="card-title text-xl">${data.title}</h2>
 
-
-
         <div class="flex gap-2">
        <span> <p class="text-base font-normal mt-1 text-gray-500 ">${data.authors[0].profile_name}</p></span>
         
@@ -71,7 +87,7 @@ const dataDiv = (loadData) => {
 
 
 
-         <p class="text-base font-normal mt-1 text-gray-500">${data.others.views}</p> 
+         <p id="views-items" class="text-base font-normal mt-1 text-gray-500">${data.others.views} views</p> 
          </div> 
          </div>         
           `;
