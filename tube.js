@@ -10,7 +10,6 @@ const phData = async () => {
 
 const displayData = (loading) => {
     const tubeContainer = document.getElementById('tube-container');
-
     loading.forEach(tube => {
         console.log(tube)
         const div = document.createElement('div');
@@ -60,9 +59,17 @@ const dataDiv = (loadData) => {
          <div>
          <h2 class="card-title text-xl">${data.title}</h2>
 
-        <div class="flex">
-        <p class="text-base font-normal mt-1 text-gray-500 ">${data.authors[0].profile_name}</p> 
+
+
+        <div class="flex gap-2">
+       <span> <p class="text-base font-normal mt-1 text-gray-500 ">${data.authors[0].profile_name}</p></span>
+        
+        <div><p>${data.authors[0].verified === true ? '<img class= mt-2 src="image/icon.svg" alt="">' : ' '}</p></div>
+
+        
         </div>
+
+
 
          <p class="text-base font-normal mt-1 text-gray-500">${data.others.views}</p> 
          </div> 
