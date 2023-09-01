@@ -35,8 +35,19 @@ const dataDiv = (loadData) => {
     const phDataContainer = document.getElementById('phData-container');
     phDataContainer.innerHTML = '';
 
+
+
+  const drawContainer = document.getElementById('draw-container');
+  if(loadData.length === 0){
+    drawContainer.classList.remove('hidden')
+  }else{
+    drawContainer.classList.add('hidden') 
+  }
+  
+
     loadData.forEach(data => {
         console.log(data)
+
         const div = document.createElement('div');
         div.classList = `card bg-base-100 shadow-xl`;
         div.innerHTML = ` <figure><img class="w-[300px] h-[200px] rounded-lg" src="${data.thumbnail}" alt="Shoes" /></figure>
